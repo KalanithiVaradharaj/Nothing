@@ -1,0 +1,30 @@
+class Icecream:
+    def  __init__ (self, type, flavour):
+        self.type = type
+        self.flavour = flavour
+        self.cost = [30,35,40,40,45,50,50,55,60]
+
+type_list = ['Stick','Cone','Cup']
+flavour_list = ['   Chocolate','   Vanila','   Strawberry']
+menu_list = []
+menu = Icecream(type_list,flavour_list)
+k = 0
+print('Price list(for 100gms)','\n')
+for i in range(len(menu.type)):
+    print(menu.type[i],'\n')
+    item = []
+    for j in range(len(menu.flavour)):
+        print(k+1,menu.flavour[j],':',menu.cost[k],'\n')
+        item.append(k+1)
+        item.append(menu.flavour[j])
+        item.append(menu.cost[k])
+        menu_list.append(item)
+        item = []
+        k += 1
+cus_choice = input().split()
+bill_amt = []
+for i in cus_choice:
+    j = int(i)-1
+    no = menu_list[j][2]
+    bill_amt.append(no)
+print('Total cost:',sum(bill_amt))
