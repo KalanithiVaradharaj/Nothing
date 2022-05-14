@@ -1,0 +1,55 @@
+class Icecream:
+    def  __init__ (self, type, flavour):
+        self.type = type
+        self.flavour = flavour
+        self.cost = [30,35,40,40,45,50,50,55,60]
+        self.quantity = ['100 gms','200 gms','350 gms', '500 gms']
+
+type_list = ['Stick','Cone ','Cup  ']
+flavour_list = ['   Chocolate ','   Vanila    ','   Strawberry']
+menu_list = []  
+menu = Icecream(type_list,flavour_list)
+k = 0
+print('MENU CARD: ','\n')
+for i in range(len(menu.type)):
+    print(menu.type[i],'\n')
+    item = []
+    for j in range(len(menu.flavour)):
+        print(k+1,menu.flavour[j],': Rs.',menu.cost[k],'\n')
+        item.append(k+1)
+        item.append(menu.flavour[j])
+        item.append(menu.cost[k])
+        menu_list.append(item)
+        item = []
+        k += 1
+print('Available quantities: ',menu.quantity,'\n')
+print('Enter the ID & QUANTITY of Icecream:(Eg:"2-200" for "Stick Vanila of 200 gms")\nLeave a single space and Enter for another item and so on.....')
+cus_choice = input().split()
+bill = []
+Total_cost = []
+print('\nYour Bill:\n')
+s = 1
+for i in cus_choice:
+    if i[1]!= '-':
+        print(s,'___You have enter wrong ID___')
+        s += 1
+    else:
+        j = int(i[0])-1
+        if j<=3:
+            k = 0
+        if j>3:
+            k = 1
+        if j>6:
+            k = 2
+        no = menu_list[j][2]
+        quan = int(i[2:])/100
+        price_of_one = no*quan
+        Total_cost.append(price_of_one)
+        bill.append(menu.type[k])
+        bill.append(menu_list[j][1])
+        bill.append(price_of_one)
+        print(s,*bill,sep='   ')
+        bill = []
+        s += 1
+print('\nTotal : Rs.',sum(Total_cost))
+print("Eat well! Be Chill!!")
