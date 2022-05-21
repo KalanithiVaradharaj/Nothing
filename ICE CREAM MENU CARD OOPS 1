@@ -1,0 +1,166 @@
+class Shop:
+    shop_name = 'ICY SHOP'
+    shop_address = '103, Anangoor Road, Erode - 638 183.'
+
+class IceCream:
+    def __init__(self,Id:int,Name:str,Flavour:str,Cost:float):
+        self.type_id = Id
+        self.type_name = Name
+        self.type_flavour = Flavour
+        self.type_cost = Cost
+
+    def print_name(self,var):
+        item.append(var.type_id)
+        item.append(var.type_name)
+        item.append(var.type_flavour)
+        item.append(var.type_cost)
+        print(self.type_id,self.type_name,self.type_flavour,self.type_cost)
+
+class Toppings:
+    def __init__(self,top_id:int,topping:str,top_cost:float):
+        self.top_id = top_id
+        self.toppings = topping
+        self.top_cost = top_cost
+    def print_top(self,var):
+        top_item.append(var.top_id)
+        top_item.append(var.toppings)
+        top_item.append(var.top_cost)
+        print(self.top_id,self.toppings,self.top_cost)
+        
+oreo_det = Toppings(1,'   Oreo Crumbles         ',20)
+cher_det = Toppings(2,'   Cherries              ',30)
+chip_det = Toppings(3,'   Chocolate chips       ',60)
+frut_det = Toppings(4,'   Fruity                ',20)
+none_det = Toppings(5,'   None                  ',0)
+
+shop_details = Shop()
+
+print('-'*80)
+print('Welcome to ICE WORLD'.center(80))
+print(shop_details.shop_name.center(80))
+print(shop_details.shop_address.center(80))
+print('-'*80)
+
+item = []
+menu = []
+choice_list = []
+stick_choco = IceCream(1,'   Stick   ','Chocolate    ',20)
+stick_vanil = IceCream(2,'   Stick   ','Vanila       ',15)
+stick_straw = IceCream(3,'   Stick   ','Strawberry   ',25)
+cone_choco = IceCream(4,'   Cone    ','Chocolate    ',35)
+cone_vanil = IceCream(5,'   Cone    ','Vanila       ',30)
+cone_straw = IceCream(6,'   Cone    ','Strawberry   ',40)
+cup_choco = IceCream(7,'   Cup     ','Chocolate    ',25)
+cup_vanil = IceCream(8,'   Cup     ','Vanila       ',20)
+cup_straw = IceCream(9,'   Cup     ','Strawberry   ',30)
+print('MENU CARD'.center(80))
+print('S.No Type     Flavour       Cost(for 100gms)')
+stick_choco.print_name(stick_choco)
+menu.append(item)
+item = []
+stick_vanil.print_name(stick_vanil)
+menu.append(item)
+item = []
+stick_straw.print_name(stick_straw)
+menu.append(item)
+item = []
+cone_choco.print_name(cone_choco)
+menu.append(item)
+item = []
+cone_vanil.print_name(cone_vanil)
+menu.append(item)
+item = []
+cone_straw.print_name(cone_straw)
+menu.append(item)
+item = []
+cup_choco.print_name(cup_choco)
+menu.append(item)
+item = []
+cup_vanil.print_name(cup_vanil)
+menu.append(item)
+item = []
+cup_straw.print_name(cup_straw)
+menu.append(item)
+item = []
+#print(*menu,sep='\n')
+
+ice_price = 0
+top_price = 0
+def More():
+    global ice_price
+    global top_price
+    print('Want more\n1.YES\n2.NO')
+    more = int(input())
+    if more==1:
+        Choice()
+    else:
+        i = 0
+        print('-'*80)
+        print('BILL'.center(80))
+        print('-'*80)
+        print('S.No Type     Flavour       Cost')
+        while i<len(choice_list):
+            print(*choice_list[i])
+            ice_price += (choice_list[i][3])
+            i += 1
+        if len(top_list)!=0:
+            j = 0
+            print('-'*80)
+            print('S.No Topping                Cost')
+            while j<len(top_list):
+                print(*top_list[j])
+                top_price += (top_list[j][2])
+                j+=1    
+
+top_item = []
+top_menu = []
+top_list = []
+def Choice():
+    global top_item
+    select = int(input('Select your Icecream Number '))
+    if 0<select<10:
+        if select == 1 or select == 4 or select == 7:
+            oreo_det.print_top(oreo_det)
+            top_menu.append(top_item)
+            top_item = []
+            cher_det.print_top(cher_det)
+            top_menu.append(top_item)
+            top_item = []
+            chip_det.print_top(chip_det)
+            top_menu.append(top_item)
+            top_item = []
+            frut_det.print_top(frut_det)
+            top_menu.append(top_item)
+            top_item = []
+            none_det.print_top(none_det)
+            top_menu.append(top_item)
+            top_item = []
+            top_choice = int(input('Select Topping '))
+            
+            if 0<top_choice<5:
+                choice_list.append(menu[select-1])
+                #print(choice_list)
+                top_list.append(top_menu[top_choice-1])
+                More()
+            elif top_choice == 5:
+                choice_list.append(menu[select-1])
+                #print(choice_list)
+                More()
+        else:
+            choice_list.append(menu[select-1])
+            #print(choice_list)
+            More()
+    else:
+        print('Select a valid Number ')
+        More()
+
+Choice()
+total_price = ice_price + top_price
+
+print('-'*80)
+print('     Total Bill Amount\t   ',total_price)
+print('-'*80)
+print('THANK YOU!'.center(80))
+print('COOL!!'.center(80))
+print('CHILL!!!'.center(80))
+
