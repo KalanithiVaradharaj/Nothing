@@ -1,0 +1,136 @@
+print('-'*80)
+print('ICE SHOP'.center(80))
+print('-'*80)
+print('MENU CARD'.center(80))
+print('S.No Type     Flavour       Cost(100gm)')
+
+class IceCream:
+    def __init__(self, sno, types, flavour, cost):
+        self.sno = sno
+        self.types = types
+        self.flavour = flavour
+        self.cost = cost
+
+    def PrintIce(self,var):
+        ice_item = []
+        ice_item.append(var.sno)
+        ice_item.append(var.types)
+        ice_item.append(var.flavour)
+        ice_item.append(var.cost)
+        print(*ice_item)
+        ice_menu.append(ice_item)
+
+class Toppings:
+    def __init__(self,sno,topping,cost):
+        self.sno = sno
+        self.topping = topping
+        self.cost = cost
+    def PrintTop(self,var):
+        top_item = []
+        top_item.append(var.sno)
+        top_item.append(var.topping)
+        top_item.append(var.cost)
+        print(*top_item)
+        top_menu.append(top_item)
+
+class Stick(IceCream):
+    pass
+
+class Cone(IceCream):
+    pass
+
+class Cup(IceCream):
+    pass
+
+def Select():
+    select = int(input('Select Ice id number '))
+    if 0 < select < 10:
+        if select == 1 or select == 4 or select == 7:
+            select_ice_list.append(ice_menu[select-1])
+            select_ice_rate.append(ice_menu[select-1][3])
+            Topping()
+        else:
+            select_ice_list.append(ice_menu[select-1])
+            select_ice_rate.append(ice_menu[select-1][3])
+            AddMore()
+    else:
+        print('Select a valid id number')
+        Select()
+        
+def AddMore():
+    more = int(input('select more\n1.yes\n2.no'))
+    if more == 1:
+        Select()
+    else:
+        print('-'*80)
+        print('BILL'.center(80))
+        print('-'*80)
+        print('S.No Type     Flavour       Cost(Rs.)')
+        for i in select_ice_list:
+            print(*i)
+        if len(select_top_list)>0:
+            print('-'*80)
+            print('S.No Topping                Cost(Rs.)')
+            for j in select_top_list:
+                print(*j)
+        print('-'*80)
+        print('     total                  Rs.',sum(select_ice_rate)+sum(select_top_rate))
+
+def Topping():
+    oreo_topping.PrintTop(oreo_topping)
+    cher_topping.PrintTop(cher_topping)
+    chip_topping.PrintTop(chip_topping)
+    frut_topping.PrintTop(frut_topping)
+    none_topping.PrintTop(none_topping)
+    select_top = int(input('Select the Topping '))
+    if 0 < select_top < 5:
+        select_top_list.append(top_menu[select_top-1])
+        select_top_rate.append(top_menu[select_top-1][2]) 
+        AddMore()
+    elif select_top == 5:
+        AddMore()
+    else:
+        print('select a valid topping')
+
+
+ice_menu = []
+ice_item = []
+top_menu = []
+top_item = []
+select_ice_list = []
+select_ice_rate = []
+select_top_list = []
+select_top_rate = []
+
+stick_choco = Stick(1,'   Stick   ','Chocolate    ',20)
+stick_vanil = Stick(2,'   Stick   ','Vanila       ',15)
+stick_straw = Stick(3,'   Stick   ','Strawberry   ',25)
+cone_choco = Cone(4,'   Cone    ','Chocolate    ',35)
+cone_vanil = Cone(5,'   Cone    ','Vanila       ',30)
+cone_straw = Cone(6,'   Cone    ','Strawberry   ',40)
+cup_choco = Cup(7,'   Cup     ','Chocolate    ',25)
+cup_vanil = Cup(8,'   Cup     ','Vanila       ',20)
+cup_straw = Cup(9,'   Cup     ','Strawberry   ',30)
+
+oreo_topping = Toppings(1,'   Oreo Crumbles         ',20)
+cher_topping = Toppings(2,'   Cherries              ',30)
+chip_topping = Toppings(3,'   Chocolate chips       ',60)
+frut_topping = Toppings(4,'   Fruity                ',20)
+none_topping = Toppings(5,'   None                  ',0)
+
+
+stick_choco.PrintIce(stick_choco)
+stick_vanil.PrintIce(stick_vanil)
+stick_straw.PrintIce(stick_straw)
+cone_choco.PrintIce(cone_choco)
+cone_vanil.PrintIce(cone_vanil)
+cone_straw.PrintIce(cone_straw)
+cup_choco.PrintIce(cup_choco)
+cup_vanil.PrintIce(cup_vanil)
+cup_straw.PrintIce(cup_straw)
+
+Select()
+print('-'*80)
+print('THANK YOU!'.center(80))
+print('COOL!!'.center(80))
+print('CHILL!!!'.center(80))
